@@ -2,7 +2,6 @@ export default function createStore(reducer) {
   let state;
 
   const getState = () => {
-    state = reducer(state, {type: '@@INIT'})
     return state
   }
 
@@ -10,6 +9,8 @@ export default function createStore(reducer) {
     state = reducer(state, action)
     render()
   }
+
+  dispatch({type: '@@INIT'})
 
   return {
     dispatch,
