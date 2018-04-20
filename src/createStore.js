@@ -1,7 +1,25 @@
 export default function createStore(reducer) {
   // add your code here
+  let state;
+
+  function dispatch(action){
+    state = reducer(state, action);
+    render(state);
+  }
+
+  function getState(){
+    return state;
+  }
+
+  dispatch({type: '@@INIT'})
+
+  return {
+    dispatch,
+    getState
+  }
 }
 
-function render() {
+function render(state) {
   const container = document.getElementById('container');
+  container.textContent=state
 }
